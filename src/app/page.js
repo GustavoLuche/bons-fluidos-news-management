@@ -25,6 +25,10 @@ export default function Home() {
               priority
             />
           </a>
+          <i className="fi fi-rr-user"></i>
+          <i className="fi fi-rr-arrow-right"></i>
+          <i className="fi fi-rr-book"></i>
+          <i className="fi fi-rr-clean"></i>
         </div>
       </div>
 
