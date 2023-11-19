@@ -1,12 +1,12 @@
+"use client";
+import Navbar from "@/components/Navbar";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <i className="fi fi-rr-user"></i>
-      <i className="fi fi-rr-arrow-right"></i>
-      <i className="fi fi-rr-book"></i>
-      <i className="fi fi-rr-clean"></i>
+    <main className="flex-auto bg-white">
+      <Navbar selectedTab="Inicio" />
+      <div className=" w-screen bg-white" />
     </main>
   );
 }
