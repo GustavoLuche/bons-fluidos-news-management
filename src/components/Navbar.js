@@ -12,10 +12,10 @@ function classNames(...classes) {
 
 export default function Navbar({ selectedTab }) {
   const navigation = [
-    { name: "Inicio", href: "/page", current: selectedTab === "Inicio" },
+    { name: "Inicio", href: "/", current: selectedTab === "Inicio" },
     {
       name: "Newsletter",
-      href: "/home",
+      href: "/login",
       current: selectedTab === "Newsletter",
     },
     { name: "Sobre nós", href: "/", current: selectedTab === "Sobre nós" },
