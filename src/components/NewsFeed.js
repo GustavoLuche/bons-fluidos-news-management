@@ -9,8 +9,12 @@ const NewsFeed = ({ posts }) => {
           <div key={post.id} className="bg-RoseLight p-4 rounded-md shadow-md">
             <div className="mb-4">
               {/* Adicionando um link ao redor da imagem */}
-              <a href={post.href}>
-                <img src={post.previewImageUrl} alt={post.title} className="w-full h-auto rounded-md" />
+              <a href={`/news/${post.id}`}>
+                <img
+                  src={post.previewImageUrl}
+                  alt={post.title}
+                  className="w-full h-auto rounded-md"
+                />
               </a>
             </div>
             <h3 className="text-lg font-semibold mb-2 text-Magenta">
