@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-UF3gSE1lZFJvFgqVhBxHEsmJXrqH02s",
@@ -27,5 +27,24 @@ const subscribeToNewsletter = async (email) => {
     return false;
   }
 };
+const getPosts = async () => {
+  try {
+    const postsRef = collection(db, "posts");
 
-export { subscribeToNewsletter, db };
+   
+    const querySnapshot = await getDocs(postsRef);
+
+    // Mapear os documentos para um array de objetos
+    const posts = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return posts;
+  } catch (error) {
+    console.error("Erro ao buscar posts:", error);
+    throw error; 
+  }
+};
+
+export { subscribeToNewsletter, db, getPosts };
