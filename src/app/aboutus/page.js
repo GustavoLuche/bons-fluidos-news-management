@@ -6,13 +6,11 @@ import NewsletterSection from "@/components/NewsletterSection";
 import Image from "next/image";
 import NewsFeed from "@/components/NewsFeed";
 
-const AboutUs = () => {
+export default function AboutUs() {
   return (
     <main className="flex-auto bg-white">
       <Navbar selectedTab="Sobre nós" />
       <CustomHeader title="Sobre nosso projeto" />
     </main>
   );
-};
-
-export default AboutUs;
+}
