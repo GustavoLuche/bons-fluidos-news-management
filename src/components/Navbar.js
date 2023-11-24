@@ -17,8 +17,8 @@ export default function Navbar({ selectedTab }) {
       name: "Newsletter",
       href: "/login",
       current: selectedTab === "Newsletter",
-    },
-    { name: "Sobre nós", href: "/about", current: selectedTab === "Sobre nós" },
+    },  
+    { name: "Sobre nós", href: "/aboutus", current: selectedTab === "Sobre nós" },
   ];
 
   return (
