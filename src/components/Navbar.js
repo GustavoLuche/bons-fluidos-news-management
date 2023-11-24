@@ -15,14 +15,21 @@ export default function Navbar({ selectedTab }) {
     { name: "Inicio", href: "/", current: selectedTab === "Inicio" },
     {
       name: "Newsletter",
-      href: "/login",
+      href: "/newsletter",
       current: selectedTab === "Newsletter",
     },
-    { name: "Sobre nós", href: "/", current: selectedTab === "Sobre nós" },
+    {
+      name: "Sobre nós",
+      href: "/aboutus",
+      current: selectedTab === "Sobre nós",
+    },
   ];
-
+  // bg-RoseLighter
   return (
-    <Disclosure as="nav" className=" bg-RoseLighter">
+    <Disclosure
+      as="nav"
+      className="backdrop-blur-md sticky top-0 drop-shadow-xl border-b-2 border-b-GreyLighter z-40"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
