@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import diguinidade from "../../assets/WomemDiguinidade.jpg";
 import Image from "next/image";
 
-export default function About() {
+export default function AboutUs() {
   const stats = [
     {
       id: 1,
