@@ -53,7 +53,7 @@ export default function AboutUs() {
     <main className="flex-auto bg-white">
     
       <Navbar selectedTab="Sobre nós" />
-      <CustomHeader title="Sobre nós" />
+      <CustomHeader title="Sobre nosso projeto" />
       <div className="bg-white mx-auto max-w-2xl py-8 sm:py-16 lg:py-32 flex flex-col sm:flex-row items-center">
         <div className="text-center sm:text-left sm:w-1/2 pr-4">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
