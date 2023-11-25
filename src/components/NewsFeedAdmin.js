@@ -37,7 +37,7 @@ const Post = ({ post, onDelete }) => {
         <h3 className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
           {post.title}
         </h3>
-        <p className="mt-2 text-black">{post.description}</p>
+        <p className="mt-2 text-black">{post.lead}</p>
         <div className="mt-4 flex items-end">
           <button
             onClick={handleDeleteClick}
@@ -47,7 +47,7 @@ const Post = ({ post, onDelete }) => {
           </button>
         </div>
         {showConfirmation && (
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md shadow-md border border-gray-300">
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md shadow-md border border-gray-300 z-50">
             <p className="mb-2 text-black text-center">
               Tem certeza de que deseja excluir?
             </p>

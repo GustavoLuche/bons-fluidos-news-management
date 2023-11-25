@@ -26,18 +26,13 @@ const Article = () => {
     }
   };
 
+  const convertDate = (date) => {
+    const newDate = new Date(date).toLocaleDateString();
+    const newTime = new Date(date).toLocaleTimeString();
+    return `${newDate} - ${newTime}`;
+  };
+
   useEffect(() => {
-    // setLoading(true);
-    // setPost({
-    //   id: "34453",
-    //   title:
-    //     "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra caralho",
-    //   lead: "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho",
-    //   content:
-    //     "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho",
-    //   CoverImage: "https://picsum.photos/500/500",
-    //   createdAt: "123231412342341",
-    // });
     fetchPost();
   }, []);
 
@@ -66,20 +61,30 @@ const Article = () => {
     <main className="flex-auto bg-white">
       <Navbar selectedTab="" />
       <div className=" bg-white mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 mt-5">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 font-poppins">
+        <div className="uppercase tracking-wide text-sm font-semibold text-Magenta m-3">
+          {post.tag}
+        </div>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 font-poppins m-3">
           {post.title}
         </h1>
-        <p className="text-lg font-normal tracking-tight text-Grey font-poppins mt-3">
+        <p className="text-lg font-normal tracking-tight text-Grey font-poppins m-3">
           {post.lead}
         </p>
         <img
-          src={post.CoverImage}
+          src={post.previewImageUrl}
           alt={post.title}
-          className="object-cover w-full h-[60vh] object-center rounded my-3"
+          className="object-cover w-full h-[60vh] object-center rounded-md m-3"
         />
 
         <p className="text-lg font-normal tracking-tight text-Black font-poppins m-5">
           {post.content}
+        </p>
+
+        <p className="text-lg font-normal tracking-tight text-Grey font-poppins m-3">
+          Por: {post.writer}
+        </p>
+        <p className="text-lg font-normal tracking-tight text-Grey font-poppins m-3">
+          {convertDate(post.createdAt)}
         </p>
       </div>
       <NewsletterSection />

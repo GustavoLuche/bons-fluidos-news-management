@@ -25,7 +25,7 @@ const Post = ({ post }) => {
         <h3 className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
           {post.title}
         </h3>
-        <p className="mt-2 text-black">{post.description}</p>
+        <p className="mt-2 text-black">{post.lead}</p>
       </div>
     </div>
   );
