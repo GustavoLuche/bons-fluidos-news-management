@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
-import { cadastrarNoticia } from "@/services/api";
+import { addNews  } from "@/services/api";
 
 export default function NewsForm() {
   const [title, setTitle] = useState("");
@@ -8,7 +8,7 @@ export default function NewsForm() {
 
   const handleFormSubmit = async () => {
     try {
-      const cadastradoComSucesso = await cadastrarNoticia(title, description);
+      const cadastradoComSucesso = await addNews (title, description);
 
       if (cadastradoComSucesso) {
         console.log("Notícia cadastrada com sucesso!");

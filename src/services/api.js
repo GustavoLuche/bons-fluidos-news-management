@@ -1,22 +1,10 @@
 // services/api.js
 
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
+// src/services/api.js
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { db } from "./firebase";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA-UF3gSE1lZFJvFgqVhBxHEsmJXrqH02s",
-  authDomain: "precise-airship-398418.firebaseapp.com",
-  projectId: "precise-airship-398418",
-  storageBucket: "precise-airship-398418.appspot.com",
-  messagingSenderId: "271597864169",
-  appId: "1:271597864169:web:f2f3fdef59cd4eb56b5c78",
-  measurementId: "G-XHGXL4MQ00",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const subscribeToNewsletter = async (email) => {
+const registerEmailToNewsletter = async (email) => {
   try {
     const newsletterRef = collection(db, "newsletter");
     await addDoc(newsletterRef, {
@@ -30,7 +18,7 @@ const subscribeToNewsletter = async (email) => {
   }
 };
 
-const getPosts = async () => {
+const getAllPosts = async () => {
   try {
     const postsRef = collection(db, "posts");
 
@@ -49,10 +37,10 @@ const getPosts = async () => {
   }
 };
 
-const cadastrarNoticia = async (title, description, tag, previewImageUrl) => {
+const addNews = async (title, description) => {
   try {
-    const newsletterRef = collection(db, "posts");
-    await addDoc(newsletterRef, {
+    const postsRef = collection(db, "posts");
+    await addDoc(postsRef, {
       title,
       description,
       tag,
