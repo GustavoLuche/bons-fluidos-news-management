@@ -8,7 +8,6 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import {} from "firebase/firestore";
 import { db } from "./firebase";
 
 const registerEmailToNewsletter = async (email) => {
