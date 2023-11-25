@@ -13,8 +13,8 @@ const Post = ({ post }) => (
       </a>
     </div>
     <div className="p-8">
-      <div className="uppercase tracking-wide text-sm text-Magenta font-semibold">
-        Notícias
+      <div className="uppercase tracking-wide text-sm font-semibold text-Magenta">
+        {post.tag}
       </div>
       <h3 className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
         <a href={post.href} className="text-black hover:underline">
