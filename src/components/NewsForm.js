@@ -1,9 +1,28 @@
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import React, { useState } from "react";
+import { PhotoIcon } from "@heroicons/react/24/solid";
+import { cadastrarNoticia } from "@/services/api";
 
 export default function NewsForm() {
+  const [titulo, setTitulo] = useState("");
+  const [conteudo, setConteudo] = useState("");
+
+  const handleFormSubmit = async () => {
+    try {
+      const cadastradoComSucesso = await cadastrarNoticia(titulo, conteudo);
+
+      if (cadastradoComSucesso) {
+        console.log("Notícia cadastrada com sucesso!");
+      } else {
+        console.error("Erro ao processar o cadastro da notícia.");
+      }
+    } catch (error) {
+      console.error("Erro ao cadastrar a notícia:", error);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-2xl py-8 sm:py-16 lg:py-32">
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -24,6 +43,8 @@ export default function NewsForm() {
                     id="titulo"
                     autoComplete="titulo"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
                   />
                 </div>
               </div>
@@ -40,7 +61,8 @@ export default function NewsForm() {
                     name="conteudo"
                     rows={5}
                     className="block w-full h-300 h-[sm:300] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    defaultValue={""}
+                    value={conteudo}
+                    onChange={(e) => setConteudo(e.target.value)}
                   />
                 </div>
               </div>

@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: "precise-airship-398418.appspot.com",
   messagingSenderId: "271597864169",
   appId: "1:271597864169:web:f2f3fdef59cd4eb56b5c78",
-  measurementId: "G-XHGXL4MQ00"
+  measurementId: "G-XHGXL4MQ00",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -31,7 +31,6 @@ const getPosts = async () => {
   try {
     const postsRef = collection(db, "posts");
 
-   
     const querySnapshot = await getDocs(postsRef);
 
     // Mapear os documentos para um array de objetos
@@ -43,8 +42,23 @@ const getPosts = async () => {
     return posts;
   } catch (error) {
     console.error("Erro ao buscar posts:", error);
-    throw error; 
+    throw error;
   }
 };
 
-export { subscribeToNewsletter, db, getPosts };
+const cadastrarNoticia = async (titulo, conteudo) => {
+  try {
+    const postsRef = collection(db, "posts");
+    await addDoc(postsRef, {
+      titulo,
+      conteudo,
+    });
+    console.error("Erro ao cadastrar a notícia no Firebase:", error);
+    return true;
+  } catch (error) {
+    console.error("Erro ao cadastrar a notícia no Firebase:", error);
+    return false;
+  }
+};
+
+export { subscribeToNewsletter, db, getPosts, cadastrarNoticia };
