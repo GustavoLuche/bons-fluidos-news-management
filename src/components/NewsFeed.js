@@ -1,6 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "@/services/api";
 
+const Post = ({ post }) => (
+  <div className="md:flex mb-2 border border-gray-300 bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="md:shrink-0">
+      <a href={`/news/${post.id}`}>
+        <img
+          src={post.previewImageUrl}
+          alt={post.title}
+          className="h-48 w-full object-cover md:h-full md:w-48"
+        />
+      </a>
+    </div>
+    <div className="p-8">
+      <div className="uppercase tracking-wide text-sm text-Magenta font-semibold">
+        Notícias
+      </div>
+      <h3 className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+        <a href={post.href} className="text-black hover:underline">
+          {post.title}
+        </a>
+      </h3>
+      <p className="mt-2 text-black">{post.description}</p>
+    </div>
+  </div>
+);
+
 const NewsFeed = () => {
   const [posts, setPosts] = useState([]);
 
@@ -9,8 +34,6 @@ const NewsFeed = () => {
       try {
         const postsFromApi = await getPosts();
         setPosts(postsFromApi);
-
-        // Adicione o console.log para verificar os dados
         console.log("Posts recuperados com sucesso:", postsFromApi);
       } catch (error) {
         console.error("Erro ao buscar posts da API:", error);
@@ -21,30 +44,10 @@ const NewsFeed = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      {/* <h2 className="text-3xl font-bold mb-4 text-Magenta">Notícias</h2> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {posts.map((post) => (
-          <div key={post.id} className="bg-RoseLight p-4 rounded-md shadow-md">
-            <div className="mb-4">
-              {/* Adicionando um link ao redor da imagem */}
-              <a href={`/news/${post.id}`}>
-                <img
-                  src={post.previewImageUrl}
-                  alt={post.title}
-                  className="w-full h-auto rounded-md"
-                />
-              </a>
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-Magenta">
-              <a href={post.href} className="text-Magenta hover:underline">
-                {post.title}
-              </a>
-            </h3>
-            <p className="text-Black">{post.description}</p>
-          </div>
-        ))}
-      </div>
+    <div className="w-400 mx-auto my-2 ml-4">
+      {posts.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </div>
   );
 };
