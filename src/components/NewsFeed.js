@@ -8,14 +8,14 @@ const Post = ({ post }) => {
 
   return (
     <div
-      className="md:flex mb-2 border border-gray-300 bg-white rounded-xl shadow-md overflow-hidden cursor-pointer"
+      className="md:flex mb-2 border border-gray-300 bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group relative"
       onClick={handleClick}
     >
-      <div className="md:shrink-0">
+      <div className="md:shrink-0 group-hover:opacity-75">
         <img
           src={post.previewImageUrl}
           alt={post.title}
-          className="h-48 w-full object-cover md:h-full md:w-48"
+          className="h-48 w-full object-cover object-center md:h-full md:w-48 "
         />
       </div>
       <div className="p-8">
@@ -62,15 +62,22 @@ const NewsFeed = () => {
         <Post key={post.id} post={post} />
       ))}
       <div className="flex justify-center mt-4">
-        {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
-          <button
-            key={index + 1}
-            onClick={() => paginate(index + 1)}
-            className={`mx-2 px-3 py-2 rounded-full ${currentPage === index + 1 ? 'bg-Magenta text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {Array.from(
+          { length: Math.ceil(posts.length / postsPerPage) },
+          (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+              className={`mx-2 px-3 py-2 rounded-full ${
+                currentPage === index + 1
+                  ? "bg-Magenta text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
       </div>
     </div>
   );
