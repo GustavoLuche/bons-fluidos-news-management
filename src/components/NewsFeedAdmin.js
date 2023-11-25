@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPosts, excluirNoticia } from "@/services/api";
+import { getAllPosts, excluirNoticia } from "@/services/api";  
 
 const Post = ({ post, onDelete }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -79,7 +79,7 @@ const NewsFeed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const postsFromApi = await getPosts();
+        const postsFromApi = await getAllPosts();
         setPosts(postsFromApi);
         console.log("Posts recuperados com sucesso:", postsFromApi);
       } catch (error) {
