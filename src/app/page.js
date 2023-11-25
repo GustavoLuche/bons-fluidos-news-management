@@ -14,8 +14,7 @@ const Home = () => {
       <Navbar selectedTab="Inicio" />
       <CustomHeader title="Inicio" />
       <NewsFeed />
-      
-      <NewsletterSection />
+       <NewsletterSection />
       <div className=" w-screen bg-white" />
     </main>
   );
