@@ -35,6 +35,26 @@ const getAllPosts = async () => {
   }
 };
 
+
+const getAllUsers = async () => {
+  try {
+    const usersRef = collection(db, "login");
+
+    const querySnapshot = await getDocs(usersRef);
+
+    // Mapear os documentos para um array de objetos
+    const users = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return users;
+  } catch (error) {
+    console.error("Erro ao buscar users:", error);
+    throw error;
+  }
+};
+
 const addNews = async (title, description) => {
   try {
     const postsRef = collection(db, "posts");
@@ -50,4 +70,4 @@ const addNews = async (title, description) => {
   }
 };
 
-export { registerEmailToNewsletter, getAllPosts, addNews };
+export { registerEmailToNewsletter, getAllPosts, addNews, getAllUsers };
