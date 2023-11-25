@@ -28,6 +28,8 @@ const Post = ({ post }) => (
 
 const NewsFeed = () => {
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 3;
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -43,11 +45,28 @@ const NewsFeed = () => {
     fetchPosts();
   }, []);
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="w-400 mx-auto my-2 ml-4">
-      {posts.map((post) => (
+      {currentPosts.map((post) => (
         <Post key={post.id} post={post} />
       ))}
+      <div className="flex justify-center mt-4">
+        {Array.from({ length: Math.ceil(posts.length / postsPerPage) }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={`mx-2 px-3 py-2 rounded-full ${currentPage === index + 1 ? 'bg-Magenta text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
