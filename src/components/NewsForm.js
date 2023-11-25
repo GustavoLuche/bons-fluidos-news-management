@@ -3,18 +3,19 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { cadastrarNoticia } from "@/services/api";
 
 export default function NewsForm() {
-  const [titulo, setTitulo] = useState("");
-  const [conteudo, setConteudo] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleFormSubmit = async () => {
     try {
-      const cadastradoComSucesso = await cadastrarNoticia(titulo, conteudo);
+      const cadastradoComSucesso = await cadastrarNoticia(title, description);
 
       if (cadastradoComSucesso) {
         console.log("Notícia cadastrada com sucesso!");
       } else {
         console.error("Erro ao processar o cadastro da notícia.");
       }
+
     } catch (error) {
       console.error("Erro ao cadastrar a notícia:", error);
     }
@@ -31,7 +32,7 @@ export default function NewsForm() {
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="col-span-full">
                 <label
-                  htmlFor="titulo"
+                  htmlFor="title"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Título
@@ -39,30 +40,30 @@ export default function NewsForm() {
                 <div className="mt-2">
                   <input
                     type="text"
-                    name="titulo"
-                    id="titulo"
-                    autoComplete="titulo"
+                    name="title"
+                    id="title"
+                    autoComplete="title"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
               </div>
               <div className="col-span-full">
                 <label
-                  htmlFor="conteudo"
+                  htmlFor="description"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Conteúdo
+                  Descrição
                 </label>
                 <div className="mt-2">
                   <textarea
-                    id="conteudo"
-                    name="conteudo"
+                    id="description"
+                    name="description"
                     rows={5}
                     className="block w-full h-300 h-[sm:300] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    value={conteudo}
-                    onChange={(e) => setConteudo(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
               </div>

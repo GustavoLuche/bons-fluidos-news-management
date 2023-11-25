@@ -27,6 +27,7 @@ const subscribeToNewsletter = async (email) => {
     return false;
   }
 };
+
 const getPosts = async () => {
   try {
     const postsRef = collection(db, "posts");
@@ -46,14 +47,14 @@ const getPosts = async () => {
   }
 };
 
-const cadastrarNoticia = async (titulo, conteudo) => {
+const cadastrarNoticia = async (title, description) => {
   try {
-    const postsRef = collection(db, "posts");
-    await addDoc(postsRef, {
-      titulo,
-      conteudo,
+    const newsletterRef = collection(db, "posts");
+    await addDoc(newsletterRef, {
+      title,
+      description,
     });
-    console.error("Erro ao cadastrar a notícia no Firebase:", error);
+    console.log("Notícia cadastrada com sucesso!");
     return true;
   } catch (error) {
     console.error("Erro ao cadastrar a notícia no Firebase:", error);
