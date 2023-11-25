@@ -6,13 +6,14 @@ import NewsletterSection from "@/components/NewsletterSection";
 import Image from "next/image";
 import NewsFeed from "@/components/NewsFeed";
 import NavbarAdmin from "@/components/NavbarAdmin";
+import NewsForm from "@/components/NewsForm";
 
 const Home = () => {
   return (
     <main className="flex-auto bg-white">
-      <NavbarAdmin selectedTab="Gerenciar" />
-      <CustomHeader title="Gerenciar Postagens" />
-      <NewsFeed />
+      <NavbarAdmin selectedTab="Novo Artigo" />
+      <CustomHeader title="Envie seu Artigo" />
+      <NewsForm/>
     </main>
   );
 };

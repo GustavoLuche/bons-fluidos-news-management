@@ -34,7 +34,7 @@ const Post = ({ post }) => {
 const NewsFeed = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 3;
+  const postsPerPage = 4;
 
   useEffect(() => {
     const fetchPosts = async () => {

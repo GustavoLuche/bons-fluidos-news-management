@@ -10,9 +10,9 @@ import NavbarAdmin from "@/components/NavbarAdmin";
 const Home = () => {
   return (
     <main className="flex-auto bg-white">
-      <NavbarAdmin selectedTab="Gerenciar" />
-      <CustomHeader title="Gerenciar Postagens" />
-      <NewsFeedAdmin/>
+      <NavbarAdmin selectedTab="Novo Admin"/>
+      <CustomHeader title="Gerenciar Administradores" />
+      <h1>Colocar lista de admin</h1>
     </main>
   );
 };
