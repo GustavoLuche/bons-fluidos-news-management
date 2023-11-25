@@ -51,15 +51,16 @@ export default function AboutUs() {
 
   return (
     <main className="flex-auto bg-white">
-    
+  
       <Navbar selectedTab="Sobre nós" />
       <CustomHeader title="Sobre nosso projeto" />
-      <div className="bg-white mx-auto max-w-2xl py-8 sm:py-16 lg:py-32 flex flex-col sm:flex-row items-center">
+  
+      <div className="bg-white mx-auto max-w-2xl py-6 sm:py-12 lg:py-24 flex flex-col sm:flex-row items-center">
         <div className="text-center sm:text-left sm:w-1/2 pr-4">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Bons Fluidos
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-lg leading-8 text-gray-600">
             Levar dignidade para meninas através do projeto de extensão. O
             Projeto de Extensão "Bons Fluidos", coordenado pela Profa. Dra.
             Katia Romero Felizardo, tem como objetivo principal proporcionar
@@ -70,16 +71,17 @@ export default function AboutUs() {
         <Image
           src={diguinidade}
           alt="description"
-          className="h-auto max-w-full sm:w-1/2 mt-6 sm:mt-0"
+          className="h-auto max-w-full sm:w-1/2 mt-4 sm:mt-0"
         />
       </div>
-      <div className="bg-white py-24 sm:py-32">
+  
+      <div className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
             {stats.map((stat) => (
               <div
                 key={stat.id}
-                className="mx-auto flex max-w-xs flex-col gap-y-4"
+                className="mx-auto flex max-w-xs flex-col gap-y-2"
               >
                 <dt className="text-base leading-7 text-gray-600">
                   {stat.name}
@@ -92,16 +94,17 @@ export default function AboutUs() {
           </dl>
         </div>
       </div>
-      <div className="bg-white py-24 sm:py-32">
+  
+      <div className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">
+          <h2 className="text-4xl font-bold mb-6 text-center text-gray-900">
             Objetivos do Projeto
           </h2>
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-12 text-center lg:grid-cols-3">
             {values.map((value) => (
               <div
                 key={value.id}
-                className="mx-auto flex max-w-xs flex-col gap-y-4"
+                className="mx-auto flex max-w-xs flex-col gap-y-2"
               >
                 <dt className="text-base leading-7 text-gray-600">
                   {value.name}
@@ -111,19 +114,22 @@ export default function AboutUs() {
           </dl>
         </div>
       </div>
-      <div className="mx-auto max-w-2xl py-24 sm:py-16 lg:py-56">
-        <div className="text-center">
+  
+      <div className="mx-auto max-w-2xl py-12 sm:py-8 lg:py-20">
+        <div className="text-center mt-2">
           <a
-            href="http://encurtador.com.br/yOR59"
+            href="https://linktr.ee/bonsfluidosutfpr"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+            className="inline-block bg-Magenta hover:bg-MagentaLight text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
           >
-            Quer ser alun@ voluntari@ do projeto?
+            Conheça mais sobre o projeto Bons Fluidos UTFPR
           </a>
         </div>
       </div>
-      <div className=" w-screen bg-white" />
+  
+      <div className="w-screen bg-white" />
     </main>
   );
-}
+  
+            }  

@@ -24,7 +24,8 @@ export default function NewsletterSection() {
     }
   };
   return (
-    <div className=" z-10 relative isolate overflow-hidden max-w-[100vw] bg-MagentaLight py-16 sm:py-24 lg:py-32">
+    <div className=" z-10 relative isolate overflow-hidden max-w-[100vw] bg-MagentaLight py-8
+    sm:py-24 lg:py-18">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
