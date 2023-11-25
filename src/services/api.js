@@ -66,4 +66,4 @@ const excluirNoticia = async (postId) => {
   }
 };
 
-export { subscribeToNewsletter, db, getPosts, cadastrarNoticia, excluirNoticia };
+export { registerEmailToNewsletter, getAllPosts, addNews, excluirNoticia };
