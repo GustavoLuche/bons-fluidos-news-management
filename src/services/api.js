@@ -4,6 +4,7 @@ import {
   addDoc,
   getDocs,
   getDoc,
+  updateDoc,
   deleteDoc,
   doc,
 } from "firebase/firestore";
@@ -42,11 +43,9 @@ const getAllPosts = async () => {
   }
 };
 
-
 const getAllUsers = async () => {
   try {
     const usersRef = collection(db, "login");
-
     const querySnapshot = await getDocs(usersRef);
 
     // Mapear os documentos para um array de objetos
@@ -54,6 +53,8 @@ const getAllUsers = async () => {
       id: doc.id,
       ...doc.data(),
     }));
+
+    console.log("Usuários retornado com sucesso!.");
 
     return users;
   } catch (error) {
@@ -116,10 +117,41 @@ const excluirNoticia = async (postId) => {
   }
 };
 
+const toggleIsAdminStatus = async (userId) => {
+  try {
+    const userRef = doc(db, "login", userId);
+
+    // Obtendo o documento do usuário para verificar o valor atual de isAdmin
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const currentIsAdminStatus = userDoc.data().isAdmin;
+
+      // Atualizando o campo isAdmin para o oposto do valor atual
+      await updateDoc(userRef, { isAdmin: !currentIsAdminStatus });
+
+      console.log(
+        `Campo isAdmin do usuário com ID ${userId} alterado com sucesso no Firebase!`
+      );
+      return true;
+    } else {
+      console.error(`Usuário com ID ${userId} não encontrado no Firebase.`);
+      return false;
+    }
+  } catch (error) {
+    console.error(
+      `Erro ao alterar o campo isAdmin do usuário no Firebase com ID ${userId}:`,
+      error
+    );
+    return false;
+  }
+};
+
 export {
   registerEmailToNewsletter,
   getAllPosts,
   addNews,
   excluirNoticia,
   getPostById,
+  getAllUsers,
+  toggleIsAdminStatus,
 };
