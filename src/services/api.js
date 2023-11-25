@@ -1,5 +1,7 @@
+// services/api.js
+
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-UF3gSE1lZFJvFgqVhBxHEsmJXrqH02s",
@@ -47,12 +49,14 @@ const getPosts = async () => {
   }
 };
 
-const cadastrarNoticia = async (title, description) => {
+const cadastrarNoticia = async (title, description, tag, previewImageUrl) => {
   try {
     const newsletterRef = collection(db, "posts");
     await addDoc(newsletterRef, {
       title,
       description,
+      tag,
+      previewImageUrl
     });
     console.log("Notícia cadastrada com sucesso!");
     return true;
@@ -62,4 +66,16 @@ const cadastrarNoticia = async (title, description) => {
   }
 };
 
-export { subscribeToNewsletter, db, getPosts, cadastrarNoticia };
+const excluirNoticia = async (postId) => {
+  try {
+    const postRef = doc(db, "posts", postId);
+    await deleteDoc(postRef);
+    console.log(`Notícia com ID ${postId} excluída do Firebase com sucesso!`);
+    return true;
+  } catch (error) {
+    console.error(`Erro ao excluir notícia do Firebase com ID ${postId}:`, error);
+    return false;
+  }
+};
+
+export { subscribeToNewsletter, db, getPosts, cadastrarNoticia, excluirNoticia };
