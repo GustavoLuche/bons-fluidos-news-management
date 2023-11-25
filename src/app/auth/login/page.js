@@ -1,9 +1,9 @@
 "use client";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
-import loadingAnimation from "../../assets/Animations/LoadingCircleWhiteAnimation.json";
-import logo from "../../assets/LogosSVG/Logo.svg";
-import background from "../../assets/WomenWithLogo.png";
+import loadingAnimation from "../../../assets/Animations/LoadingCircleWhiteAnimation.json";
+import logo from "../../../assets/LogosSVG/Logo.svg";
+import background from "../../../assets/WomenWithLogo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -17,7 +17,7 @@ export default function Login() {
   const router = useRouter();
 
   const signIn = () => {
-    router.push("/");
+    router.push("/admin");
   };
 
   // useEffect(() => {
@@ -26,7 +26,7 @@ export default function Login() {
   // }, [user]);
 
   const handleOpenRegister = () => {
-    router.push("/register");
+    router.push("/auth/register");
   };
 
   // const handleSuccess = () => {
