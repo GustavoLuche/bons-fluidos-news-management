@@ -7,7 +7,7 @@ import UserList from "@/components/UserList";
 
 const Home = () => {
   return (
-    <main className="flex-auto bg-white">
+    <main className="flex-auto bg-white h-screen">
       <NavbarAdmin selectedTab="Novo Admin" />
       <CustomHeader title="Gerenciar Adimistradores" />
       <UserList />

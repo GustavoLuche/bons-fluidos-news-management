@@ -85,15 +85,25 @@ const getPostByID = async (id) => {
   }
 };
 
-const addNews = async (title, description, tag, previewImageUrl, text) => {
+const addNews = async (
+  title,
+  lead,
+  tag,
+  previewImageUrl,
+  content,
+  createdAt,
+  writer
+) => {
   try {
     const postsRef = collection(db, "posts");
     await addDoc(postsRef, {
       title,
-      description,
+      lead,
       tag,
       previewImageUrl,
-      text,
+      content,
+      createdAt,
+      writer,
     });
     console.log("Notícia cadastrada com sucesso!");
     return true;
