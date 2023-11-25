@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA-UF3gSE1lZFJvFgqVhBxHEsmJXrqH02s",
@@ -47,6 +53,27 @@ const getPosts = async () => {
   }
 };
 
+const getPostById = async (id) => {
+  try {
+    const postRef = doc(db, "posts", id);
+    const postSnapshot = await getDoc(postRef);
+
+    if (postSnapshot.exists()) {
+      const post = {
+        id: postSnapshot.id,
+        ...postSnapshot.data(),
+      };
+      return post;
+    } else {
+      console.error("No such post!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching post: ", error);
+    throw error;
+  }
+};
+
 const cadastrarNoticia = async (title, description) => {
   try {
     const newsletterRef = collection(db, "posts");
@@ -62,4 +89,4 @@ const cadastrarNoticia = async (title, description) => {
   }
 };
 
-export { subscribeToNewsletter, db, getPosts, cadastrarNoticia };
+export { subscribeToNewsletter, db, getPosts, cadastrarNoticia, getPostById };

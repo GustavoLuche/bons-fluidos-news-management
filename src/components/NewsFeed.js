@@ -3,7 +3,7 @@ import { getPosts } from "@/services/api";
 
 const Post = ({ post }) => {
   const handleClick = () => {
-    window.location.href = `/news/${post.id}`;
+    window.location.href = `/common/article?id=${post.id}`;
   };
 
   return (
