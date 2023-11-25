@@ -4,10 +4,10 @@ import CustomHeader from "@/components/CustomHeaderHeader"; // Corrigido o nome 
 import Navbar from "@/components/Navbar";
 import NewsletterSection from "@/components/NewsletterSection";
 import { useSearchParams } from "next/navigation";
-import { getPostByID } from "@/services/api";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../../assets/Animations/LoadingCircleMagentaAnimation.json";
 import Image from "next/image";
+import { getPostByID } from "@/services/api";
 
 const Article = () => {
   const searchParams = useSearchParams();
@@ -18,6 +18,7 @@ const Article = () => {
   const fetchPost = async () => {
     try {
       const postsFromApi = await getPostByID(id);
+      console.log("Teste:", postsFromApi);
       setPost(postsFromApi);
       console.log("Post recuperados com sucesso:", postsFromApi);
     } catch (error) {
@@ -26,29 +27,37 @@ const Article = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    setPost({
-      id: "34453",
-      title:
-        "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra caralho",
-      lead: "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho",
-      content:
-        "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho",
-      CoverImage: "https://picsum.photos/500/500",
-      createdAt: "123231412342341",
-    });
-    // fetchPost();
-    setLoading(false);
+    // setLoading(true);
+    // setPost({
+    //   id: "34453",
+    //   title:
+    //     "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra caralho",
+    //   lead: "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho",
+    //   content:
+    //     "A consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralhoA consolidação do meio corporativo ja consolidado de maneira independete e chata pra pra caralho",
+    //   CoverImage: "https://picsum.photos/500/500",
+    //   createdAt: "123231412342341",
+    // });
+    fetchPost();
   }, []);
+
+  useEffect(() => {
+    if (post) {
+      setLoading(false);
+    }
+  }, [post]);
 
   if (loading) {
     return (
-      <main className="flex-auto bg-white h-screen">
-        <Lottie
-          animationData={loadingAnimation}
-          loop={true}
-          style={{ height: 30, padding: 0 }}
-        />
+      <main className="flex-auto bg-white h-screen overflow-hidden">
+        <Navbar selectedTab="" />
+        <div className="flex items-center justify-center h-full">
+          <Lottie
+            animationData={loadingAnimation}
+            loop={true}
+            style={{ height: 150 }}
+          />
+        </div>
       </main>
     );
   }
