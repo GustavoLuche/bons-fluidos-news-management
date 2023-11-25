@@ -10,18 +10,18 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar({ selectedTab }) {
+export default function NavbarAdmin({ selectedTab }) {
   const navigation = [
-    { name: "Inicio", href: "/", current: selectedTab === "Inicio" },
+    { name: "Gerenciar", href: "/admin", current: selectedTab === "Gerenciar" },
     {
-      name: "Newsletter",
-      href: "/common/newsletter",
-      current: selectedTab === "Newsletter",
+      name: "Novo Artigo",
+      href: "/admin/newarticle",
+      current: selectedTab === "Novo Artigo",
     },
     {
-      name: "Sobre nós",
-      href: "/common/aboutus",
-      current: selectedTab === "Sobre nós",
+      name: "Novo Admin",
+      href: "/admin/newadmin",
+      current: selectedTab === "Novo Admin",
     },
   ];
   // bg-RoseLighter
@@ -79,10 +79,10 @@ export default function Navbar({ selectedTab }) {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <a
-                  href={"/auth/login"}
+                  href={"/"}
                   className="text-gray-700 hover:bg-RoseLight hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                 >
-                  Entrar
+                  Sair
                 </a>
                 {/* Profile dropdown */}
                 {/* <Menu as="div" className="relative ml-3">
