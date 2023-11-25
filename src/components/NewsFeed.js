@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPosts } from "@/services/api";
+import { getAllPosts } from "@/services/api";
 
 const Post = ({ post }) => {
   const handleClick = () => {
@@ -39,7 +39,7 @@ const NewsFeed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const postsFromApi = await getPosts();
+        const postsFromApi = await getAllPosts();
         setPosts(postsFromApi);
         console.log("Posts recuperados com sucesso:", postsFromApi);
       } catch (error) {
