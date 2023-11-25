@@ -1,7 +1,7 @@
 "use client";
 import CustomHeader from "@/components/CustomHeaderHeader";
 import Navbar from "@/components/Navbar";
-import diguinidade from "../../assets/WomemDiguinidade.jpg";
+import diguinidade from "../../../assets/WomemDiguinidade.jpg";
 import Image from "next/image";
 
 export default function AboutUs() {

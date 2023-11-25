@@ -180,7 +180,11 @@ const Register = () => {
         </div>
         <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 flex justify-center items-center">
           <p className="text-xs text-Black mt-5">
-            <a href="/aboutus" target="_blank" className="hover:underline">
+            <a
+              href="/common/aboutus"
+              target="_blank"
+              className="hover:underline"
+            >
               Sobre nós
             </a>
           </p>
