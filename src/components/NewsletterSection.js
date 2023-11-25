@@ -2,16 +2,15 @@
 
 import React, { useState } from 'react';
 import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/react/24/outline";
-import { subscribeToNewsletter } from '@/services/api';
+import { registerEmailToNewsletter  } from '@/services/api';
 
 export default function NewsletterSection() {
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");
 
   const handleSubscribe = async () => {
     try {
-      const cadastradoComSucesso = await subscribeToNewsletter(email);
+      const cadastradoComSucesso = await registerEmailToNewsletter (email);
 
       if (cadastradoComSucesso) {
         setMensagem("Assinatura realizada com sucesso!");
