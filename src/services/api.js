@@ -6,6 +6,9 @@ import {
   getDoc,
   deleteDoc,
   doc,
+  documentId,
+  where,
+  query,
 } from "firebase/firestore";
 import { db } from "./firebase";
 
@@ -42,23 +45,21 @@ const getAllPosts = async () => {
   }
 };
 
-const getPostById = async (id) => {
+const getPostByID = async (id) => {
   try {
-    const postRef = doc(db, "posts", id);
-    const postSnapshot = await getDoc(postRef);
+    const postsRef = collection(db, "posts");
+    const querySnapshot = await getDocs(postsRef);
+    // Mapear os documentos para um array de objetos
+    const posts = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
-    if (postSnapshot.exists()) {
-      const post = {
-        id: postSnapshot.id,
-        ...postSnapshot.data(),
-      };
-      return post;
-    } else {
-      console.error("No such post!");
-      return null;
-    }
+    const PostFinded = posts.filter((item) => item.id === id);
+
+    return PostFinded[0];
   } catch (error) {
-    console.error("Error fetching post: ", error);
+    console.error("Erro ao buscar posts:", error);
     throw error;
   }
 };
@@ -71,7 +72,7 @@ const addNews = async (title, description, tag, previewImageUrl, text) => {
       description,
       tag,
       previewImageUrl,
-      text
+      text,
     });
     console.log("Notícia cadastrada com sucesso!");
     return true;
@@ -101,5 +102,5 @@ export {
   getAllPosts,
   addNews,
   excluirNoticia,
-  getPostById,
+  getPostByID,
 };
