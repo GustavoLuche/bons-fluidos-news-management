@@ -8,9 +8,9 @@ import NewsFeed from "@/components/NewsFeed";
 
 const Newsletter = () => {
   return (
-    <main className="flex-auto bg-white">
+    <main className="flex-auto bg-White">
       <Navbar selectedTab="Newsletter" />
-      <div className=" bg-MagentaLight flex flex-col">
+      <div className="bg-MagentaLight min-h-screen backdrop-blur-md jus">
         <NewsletterSection />
       </div>
     </main>
