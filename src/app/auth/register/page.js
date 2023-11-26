@@ -5,17 +5,38 @@ import loadingAnimation from "../../../assets/Animations/LoadingCircleWhiteAnima
 import Navbar from "@/components/Navbar";
 import Lottie from "lottie-react";
 import { useRouter } from "next/navigation";
+import { cadastrar } from "@/services/api";
 
 const Register = () => {
-  const [user, setUser] = useState(false);
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const signUp = () => {
+  const handleNomeChange = (event) => {
+    setNome(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const signUp = async () => {
     setLoading(true);
 
-    // adicionar o post no banco aqui
-    // router.push("/");
+    if (!nome || !email || !password) {
+      console.error("Por favor, preencha todos os campos.");
+      setLoading(false);
+      return;
+    }
+
+    await cadastrar(email, password, nome);
+    
     setLoading(false);
   };
 
@@ -46,6 +67,8 @@ const Register = () => {
                       id="first-name"
                       autoComplete="given-name"
                       placeholder="Maria"
+                      value={nome}
+                      onChange={handleNomeChange}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -84,6 +107,8 @@ const Register = () => {
                       type="email"
                       autoComplete="email"
                       placeholder="@gmail.com"
+                      value={email}
+                      onChange={handleEmailChange}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -124,6 +149,8 @@ const Register = () => {
                       id="password"
                       autoComplete="password"
                       placeholder="********"
+                      value={password}
+                      onChange={handlePasswordChange}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -155,7 +182,7 @@ const Register = () => {
         <div className="mt-1 ">
           <button
             className="w-full flex mx-auto items-center justify-center drop-shadow-[0_0_0.3rem_#ffffff70] bg-gradient-to-b text-White from-transparent backdrop-blur-2xl bg-Magenta static w-auto rounded-xl px-6 py-4 w-200"
-            onClick={() => signUp()}
+            onClick={() => cadastrar(email, password, nome)}
           >
             {loading ? (
               <Lottie

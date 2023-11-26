@@ -6,36 +6,38 @@ import logo from "../../../assets/LogosSVG/Logo.svg";
 import background from "../../../assets/WomenWithLogo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { autenticar } from "@/services/api";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/services/firebase";
 
 export default function Login() {
-  // const { user, loading, signIn, signOut } = useAuth();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [user, setUser] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const signIn = () => {
-    router.push("/admin");
-  };
+  // No método signIn em page.js
+const signIn = async () => {
+  setLoading(true);
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userLogged) => {
+            console.log ("Logado com sucesso: " + JSON.stringify(userLogged))
+            router.push("/");
+        })
+        .catch((error) => {
+            console.log("Erro durante login: " + JSON.stringify(error))
+        })
+        .finally(() => {
+            setLoading(false)
+        })
+};
 
-  // useEffect(() => {
-  //   if (user) {
-  //   }
-  // }, [user]);
 
   const handleOpenRegister = () => {
     router.push("/auth/register");
   };
-
-  // const handleSuccess = () => {
-  //   router.push("/loginSuccess");
-  // };
-
-  // useEffect(() => {
-  //   if (user) handleSuccess();
-  // }, [user]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-6">
@@ -69,6 +71,8 @@ export default function Login() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="mb-3 min-w-[200px] w-auto flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-Black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   placeholder="Seu email"
@@ -79,6 +83,8 @@ export default function Login() {
                   name="password"
                   type="password"
                   autoComplete="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="mb-3 min-w-[200px] w-auto flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-Black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   placeholder="Sua senha"
