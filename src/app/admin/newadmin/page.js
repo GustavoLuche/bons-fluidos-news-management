@@ -9,10 +9,12 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 const Home = () => {
   return (
     <ProtectedRoute>
-      <main className="flex-auto bg-white h-screen">
+      <main className="flex-auto bg-white min-h-screen">
         <NavbarAdmin selectedTab="Novo Admin" />
         <CustomHeader title="Gerenciar Adimistradores" />
-        <UserList />
+        <div className="px-5">
+          <UserList />
+        </div>
       </main>
     </ProtectedRoute>
   );
