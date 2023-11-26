@@ -231,6 +231,32 @@ const toggleIsAdminStatus = async (userId) => {
   }
 };
 
+const isAdminUser = async (userId) => {
+  try {
+    const userRef = doc(db, "users", userId);
+
+    // Obtendo o documento do usuário para verificar o valor atual de isAdmin
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const currentIsAdminStatus = userDoc.data().isAdmin;
+      alert(currentIsAdminStatus);
+      console.log(
+        `Campo isAdmin do usuário com ID ${userId} recuperado com sucesso no Firebase!`
+      );
+      return currentIsAdminStatus;
+    } else {
+      console.error(`Usuário com ID ${userId} não encontrado no Firebase.`);
+      return false;
+    }
+  } catch (error) {
+    console.error(
+      `Erro ao recuperar o campo isAdmin do usuário no Firebase com ID ${userId}:`,
+      error
+    );
+    return false;
+  }
+};
+
 export {
   registerEmailToNewsletter,
   getAllPosts,
@@ -241,4 +267,5 @@ export {
   toggleIsAdminStatus,
   autenticar,
   cadastrar,
+  isAdminUser,
 };

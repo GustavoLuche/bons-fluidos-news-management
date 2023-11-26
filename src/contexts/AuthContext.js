@@ -8,6 +8,8 @@ import {
 
 import { useRouter } from "next/navigation";
 
+import { isAdminUser } from "../services/api";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -43,9 +45,16 @@ export const AuthProvider = ({ children }) => {
         password
       );
       if (userLogged.user) {
-        console.log("Usuário autenticado com sucesso!");
         setAuthenticated(true);
-        router.push("/");
+        console.log("Usuário autenticado com sucesso!");
+
+        const isAdmin = await isAdminUser(userLogged.user.uid);
+        if (isAdmin) {
+          setUserAdmin(true);
+          router.push("/admin");
+        } else {
+          router.push("/");
+        }
       } else {
         console.error("Erro ao autenticar usuário");
       }
