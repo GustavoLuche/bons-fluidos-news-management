@@ -39,7 +39,7 @@ export default function RegisterForm() {
 
     try {
       alert("Consegui2");
-      await cadastrar(formData.email, formData.password, formData.firstName);
+      await cadastrar(formData.email, formData.password, formData.firstName, formData.lastName, formData.imageUrl);
       setShowNotification(true);
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);

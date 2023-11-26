@@ -1,6 +1,9 @@
 // src/services/api.js
 import { db, auth } from "./firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
   collection,
@@ -122,7 +125,7 @@ const autenticar = async (email, password) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       throw new Error("Formato de e-mail inválido");
-    }  
+    }
 
     const userLogged = await signInWithEmailAndPassword(auth, email, password);
 
@@ -147,27 +150,38 @@ const autenticar = async (email, password) => {
   }
 };
 
-const cadastrar = async (email, password, nome) => {
-
+const cadastrar = async (email, password, firstName, lastName, imageUrl) => {
   try {
     // Verificar o formato do e-mail antes de cadastrar
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       throw new Error("Formato de e-mail inválido");
-    }  
+    }
 
-    const userLogged = await createUserWithEmailAndPassword(auth, email, password);
-    
+    const userLogged = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
     if (userLogged.user) {
       const userDocRef = doc(db, "users", userLogged.user.uid);
-      await setDoc(userDocRef, {nome, email, password });
-  
-      console.log("Usuário cadastrado com sucesso: " + JSON.stringify(userLogged));
+      await setDoc(userDocRef, {
+        firstName,
+        lastName,
+        email,
+        password,
+        imageUrl,
+        isAdmin: false,
+      });
+
+      console.log(
+        "Usuário cadastrado com sucesso: " + JSON.stringify(userLogged)
+      );
       router.push("/");
-    }else {
+    } else {
       console.error("Erro ao criar usuário no Firebase");
     }
- 
   } catch (error) {
     console.log("Erro durante o cadastro: " + JSON.stringify(error));
   }
