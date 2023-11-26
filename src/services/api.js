@@ -204,7 +204,7 @@ const excluirNoticia = async (postId) => {
 
 const toggleIsAdminStatus = async (userId) => {
   try {
-    const userRef = doc(db, "login", userId);
+    const userRef = doc(db, "users", userId);
 
     // Obtendo o documento do usuário para verificar o valor atual de isAdmin
     const userDoc = await getDoc(userRef);
