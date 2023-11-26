@@ -34,11 +34,9 @@ export default function RegisterForm() {
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Consegui");
     setLoading(true);
 
     try {
-      alert("Consegui2");
       await cadastrar(formData.email, formData.password, formData.firstName, formData.lastName, formData.imageUrl);
       setShowNotification(true);
     } catch (error) {
