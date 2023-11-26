@@ -7,14 +7,17 @@ import Image from "next/image";
 import NewsFeed from "@/components/NewsFeed";
 import NavbarAdmin from "@/components/NavbarAdmin";
 import NewsForm from "@/components/NewsForm";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Home = () => {
   return (
-    <main className="flex-auto bg-white">
-      <NavbarAdmin selectedTab="Novo Artigo" />
-      <CustomHeader title="Envie seu Artigo" />
-      <NewsForm/>
-    </main>
+    <ProtectedRoute>
+      <main className="flex-auto bg-white">
+        <NavbarAdmin selectedTab="Novo Artigo" />
+        <CustomHeader title="Envie seu Artigo" />
+        <NewsForm />
+      </main>
+    </ProtectedRoute>
   );
 };
 

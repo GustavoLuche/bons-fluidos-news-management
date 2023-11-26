@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../services/firebase";
 import {
   signInWithEmailAndPassword,
@@ -19,6 +19,23 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
+
+  // Ao montar o componente, tenta recuperar dados do armazenamento local
+  useEffect(() => {
+    const storedAuth = JSON.parse(localStorage.getItem("auth"));
+    if (storedAuth) {
+      setAuthenticated(storedAuth.isAuthenticated);
+      setUserAdmin(storedAuth.isUserAdmin);
+      setCurrentUser(storedAuth.currentUser);
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  const saveAuthToLocalStorage = (authData) => {
+    localStorage.setItem("auth", JSON.stringify(authData));
+  };
 
   const signup = async (email, password) => {
     try {
@@ -49,6 +66,14 @@ export const AuthProvider = ({ children }) => {
         console.log("Usuário autenticado com sucesso!");
 
         const isAdmin = await isAdminUser(userLogged.user.uid);
+
+        // Salva os dados de autenticação no armazenamento local
+        saveAuthToLocalStorage({
+          isAuthenticated: true,
+          isUserAdmin: isAdmin,
+          currentUser: userLogged.user,
+        });
+
         if (isAdmin) {
           setUserAdmin(true);
           router.push("/admin");
@@ -65,6 +90,12 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     setAuthenticated(false);
+    setUserAdmin(false);
+    setCurrentUser(null);
+
+    // Remove os dados de autenticação do armazenamento local
+    localStorage.removeItem("auth");
+    
     signOut(auth)
       .then(() => {
         console.log("Logout bem-sucedido.");

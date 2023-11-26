@@ -3,8 +3,11 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, isUserAdmin } = useAuth();
+  const { isAuthenticated } = useAuth();
   const router = useRouter();
+
+  // Recuperar isUserAdmin do armazenamento local
+  const isUserAdmin = JSON.parse(localStorage.getItem("auth")).isUserAdmin;
 
   if (!isUserAdmin) {
     // Redirecionar para a página de login se o usuário não estiver autenticado

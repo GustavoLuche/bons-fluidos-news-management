@@ -6,14 +6,17 @@ import NewsletterSection from "@/components/NewsletterSection";
 import Image from "next/image";
 import NewsFeedAdmin from "@/components/NewsFeedAdmin";
 import NavbarAdmin from "@/components/NavbarAdmin";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Home = () => {
   return (
-    <main className="flex-auto bg-white h-screen">
-      <NavbarAdmin selectedTab="Gerenciar" />
-      <CustomHeader title="Gerenciar Postagens" />
-      <NewsFeedAdmin />
-    </main>
+    <ProtectedRoute>
+      <main className="flex-auto bg-white h-screen">
+        <NavbarAdmin selectedTab="Gerenciar" />
+        <CustomHeader title="Gerenciar Postagens" />
+        <NewsFeedAdmin />
+      </main>
+    </ProtectedRoute>
   );
 };
 
