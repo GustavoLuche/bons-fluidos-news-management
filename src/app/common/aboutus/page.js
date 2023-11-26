@@ -55,7 +55,7 @@ export default function AboutUs() {
       <Navbar selectedTab="Sobre nós" />
       <CustomHeader title="Sobre nosso projeto" />
   
-      <div className="bg-white mx-auto max-w-2xl py-6 sm:py-12 lg:py-24 flex flex-col sm:flex-row items-center">
+      <div className="bg-white mt-1 mx-auto max-w-2xl py-6 sm:py-12 lg:py-24 flex flex-col sm:flex-row items-center">
         <div className="text-center sm:text-left sm:w-1/2 pr-4">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Bons Fluidos

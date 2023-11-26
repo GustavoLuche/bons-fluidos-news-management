@@ -3,7 +3,7 @@ import { getAllPosts } from "@/services/api";
 
 const Post = ({ post }) => {
   const handleClick = () => {
-    window.location.href = `/news/${post.id}`;
+    window.location.href = `/common/article?id=${post.id}`;
   };
 
   return (
@@ -25,7 +25,7 @@ const Post = ({ post }) => {
         <h3 className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
           {post.title}
         </h3>
-        <p className="mt-2 text-black">{post.description}</p>
+        <p className="mt-2 text-black">{post.lead}</p>
       </div>
     </div>
   );
@@ -34,7 +34,7 @@ const Post = ({ post }) => {
 const NewsFeed = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 3;
+  const postsPerPage = 4;
 
   useEffect(() => {
     const fetchPosts = async () => {

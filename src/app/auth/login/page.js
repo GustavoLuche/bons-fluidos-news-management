@@ -18,7 +18,6 @@ export default function Login() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // No método signIn em page.js
 const signIn = async () => {
   setLoading(true);
         signInWithEmailAndPassword(auth, email, password)

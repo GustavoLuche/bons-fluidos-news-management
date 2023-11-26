@@ -4,15 +4,15 @@ import CustomHeader from "@/components/CustomHeaderHeader"; // Corrigido o nome 
 import Navbar from "@/components/Navbar";
 import NewsletterSection from "@/components/NewsletterSection";
 import Image from "next/image";
-import NewsFeed from "@/components/NewsFeed";
+import NewsFeedAdmin from "@/components/NewsFeedAdmin";
 import NavbarAdmin from "@/components/NavbarAdmin";
 
 const Home = () => {
   return (
-    <main className="flex-auto bg-white">
+    <main className="flex-auto bg-white h-screen">
       <NavbarAdmin selectedTab="Gerenciar" />
       <CustomHeader title="Gerenciar Postagens" />
-      <NewsFeed />
+      <NewsFeedAdmin />
     </main>
   );
 };
