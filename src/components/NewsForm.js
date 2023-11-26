@@ -118,10 +118,10 @@ export default function NewsForm() {
                     placeholder="Selecione uma opção"
                   >
                     <option value="">Selecione uma opção</option>
-                    <option value="Evento">Artigo</option>
+                    <option value="Artigo">Artigo</option>
                     <option value="Notícia">Notícia</option>
-                    <option value="Evento">Nota de esclarecimento</option>
-                    <option value="Evento">Nota de Repúdio</option>
+                    <option value="Nota de esclarecimento">Nota de esclarecimento</option>
+                    <option value="Nota de Repúdio">Nota de Repúdio</option>
                     <option value="Evento">Evento</option>
                     {/* Adicione mais opções conforme necessário */}
                   </select>
