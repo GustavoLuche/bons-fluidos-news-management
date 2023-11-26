@@ -10,29 +10,26 @@ import { autenticar } from "@/services/api";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/services/firebase";
 
+import { useAuth } from "../../../contexts/AuthContext";
+
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [user, setUser] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-const signIn = async () => {
-  setLoading(true);
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userLogged) => {
-            console.log ("Logado com sucesso: " + JSON.stringify(userLogged))
-            router.push("/");
-        })
-        .catch((error) => {
-            console.log("Erro durante login: " + JSON.stringify(error))
-        })
-        .finally(() => {
-            setLoading(false)
-        })
-};
+  const { login } = useAuth();
 
+  const signIn = async () => {
+    try {
+      login(email, password);
+      console.log("Logado com sucesso");
+    } catch (error) {
+      console.error("Erro durante login");
+    }
+  };
 
   const handleOpenRegister = () => {
     router.push("/auth/register");
