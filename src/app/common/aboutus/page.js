@@ -3,6 +3,7 @@ import CustomHeader from "@/components/CustomHeaderHeader";
 import Navbar from "@/components/Navbar";
 import diguinidade from "../../../assets/WomemDiguinidade.jpg";
 import Image from "next/image";
+import DeveloperTeam from "@/components/DeveloperTeam";
 
 export default function AboutUs() {
   const stats = [
@@ -128,7 +129,7 @@ export default function AboutUs() {
         </div>
       </div>
   
-      <div className="w-screen bg-white" />
+      <DeveloperTeam />
     </main>
   );
   

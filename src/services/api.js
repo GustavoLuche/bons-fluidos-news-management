@@ -54,7 +54,7 @@ const getAllPosts = async () => {
 
 const getAllUsers = async () => {
   try {
-    const usersRef = collection(db, "login");
+    const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(usersRef);
 
     // Mapear os documentos para um array de objetos

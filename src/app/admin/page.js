@@ -11,10 +11,11 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 const Home = () => {
   return (
     <ProtectedRoute>
-      <main className="flex-auto bg-white h-screen">
+      <main className="flex-auto bg-white">
         <NavbarAdmin selectedTab="Gerenciar" />
         <CustomHeader title="Gerenciar Postagens" />
         <NewsFeedAdmin />
+        <NewsletterSection />
       </main>
     </ProtectedRoute>
   );

@@ -5,12 +5,21 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../assets/LogosSVG/Logo.svg";
 import Image from "next/image";
 import colors from "@/styles/colors";
+import { useAuth } from "@/contexts/AuthContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar({ selectedTab }) {
+  // const  = JSON.parse(localStorage.getItem("auth")).isAuthenticated;
+  const storedAuth =
+    typeof localStorage !== "undefined"
+      ? JSON.parse(localStorage.getItem("auth"))
+      : null;
+  const isUserLogged = storedAuth ? storedAuth.isAuthenticated : false;
+  const { logout } = useAuth();
+
   const navigation = [
     { name: "Inicio", href: "/", current: selectedTab === "Inicio" },
     {
@@ -78,12 +87,22 @@ export default function Navbar({ selectedTab }) {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <a
-                  href={"/auth/login"}
-                  className="text-gray-700 hover:bg-RoseLight hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  Entrar
-                </a>
+                {isUserLogged ? (
+                  <a
+                    className="text-gray-700 hover:bg-RoseLight hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    onClick={() => logout()}
+                  >
+                    Sair
+                  </a>
+                ) : (
+                  <a
+                    href={"/auth/login"}
+                    className="text-gray-700 hover:bg-RoseLight hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    Entrar
+                  </a>
+                )}
+
                 {/* Profile dropdown */}
                 {/* <Menu as="div" className="relative ml-3">
                   <div>
