@@ -239,7 +239,6 @@ const isAdminUser = async (userId) => {
     const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
       const currentIsAdminStatus = userDoc.data().isAdmin;
-      alert(currentIsAdminStatus);
       console.log(
         `Campo isAdmin do usuário com ID ${userId} recuperado com sucesso no Firebase!`
       );

@@ -4,14 +4,17 @@ import CustomHeader from "@/components/CustomHeaderHeader"; // Corrigido o nome 
 import NewsFeedAdmin from "@/components/NewsFeedAdmin";
 import NavbarAdmin from "@/components/NavbarAdmin";
 import UserList from "@/components/UserList";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Home = () => {
   return (
-    <main className="flex-auto bg-white h-screen">
-      <NavbarAdmin selectedTab="Novo Admin" />
-      <CustomHeader title="Gerenciar Adimistradores" />
-      <UserList />
-    </main>
+    <ProtectedRoute>
+      <main className="flex-auto bg-white h-screen">
+        <NavbarAdmin selectedTab="Novo Admin" />
+        <CustomHeader title="Gerenciar Adimistradores" />
+        <UserList />
+      </main>
+    </ProtectedRoute>
   );
 };
 
