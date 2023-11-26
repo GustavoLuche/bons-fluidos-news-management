@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { cadastrar } from "@/services/api";
 
 // Componente de formulário
 export default function RegisterForm() {
@@ -21,10 +22,30 @@ export default function RegisterForm() {
   // Configurar o roteador Next.js
   const router = useRouter();
 
+  // Função para lidar com a mudança nos campos do formulário
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    alert("Consegui");
+    setLoading(true);
+
+    try {
+      alert("Consegui2");
+      await cadastrar(formData.email, formData.password, formData.firstName);
+      setShowNotification(true);
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -47,7 +68,7 @@ export default function RegisterForm() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -62,9 +83,11 @@ export default function RegisterForm() {
                   <input
                     placeholder="Maria"
                     type="text"
-                    name="first-name"
+                    name="firstName"
                     id="first-name"
                     autoComplete="given-name"
+                    value={formData.firstName}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -80,9 +103,11 @@ export default function RegisterForm() {
                   <input
                     placeholder="Da Silva"
                     type="text"
-                    name="last-name"
+                    name="lastName"
                     id="last-name"
                     autoComplete="family-name"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -101,6 +126,8 @@ export default function RegisterForm() {
                     name="email"
                     type="email"
                     autoComplete="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -117,9 +144,11 @@ export default function RegisterForm() {
                   <input
                     placeholder="http//"
                     type="url"
-                    name="url"
+                    name="imageUrl"
                     id="url"
                     autoComplete="url"
+                    value={formData.imageUrl}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -139,6 +168,8 @@ export default function RegisterForm() {
                     type="password"
                     autoComplete="current-password"
                     required
+                    value={formData.password}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -153,11 +184,13 @@ export default function RegisterForm() {
                 <div className="mt-2">
                   <input
                     placeholder="********"
-                    id="password"
-                    name="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
                     type="password"
                     autoComplete="current-password"
                     required
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-Magenta sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -170,15 +203,7 @@ export default function RegisterForm() {
             type="submit"
             className="flex w-full justify-center rounded-md bg-Magenta px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-Rose focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-Magenta"
           >
-            {loading ? (
-              <Lottie
-                animationData={loadingAnimation}
-                loop={true}
-                style={{ height: 30, padding: 0 }}
-              />
-            ) : (
-              <>Finalizar Cadastro</>
-            )}
+            Finalizar Cadastro
           </button>
         </div>
         <div>
