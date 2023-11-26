@@ -11,7 +11,7 @@ import RegisterForm from "@/components/RegisterForm";
 const Register = () => {
 
   return (
-    <main className="flex-auto bg-white">
+    <main className="flex-auto bg-white min-h-screen">
       <Navbar selectedTab="Register" />
       <CustomHeader title="Faça seu cadastro" />
       <RegisterForm />

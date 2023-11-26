@@ -23,9 +23,11 @@ export default function Login() {
   const { login } = useAuth();
 
   const signIn = async () => {
+    setLoading(true);
     try {
       login(email, password);
       console.log("Logado com sucesso");
+      setLoading(false);
     } catch (error) {
       console.error("Erro durante login");
     }

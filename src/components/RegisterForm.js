@@ -37,8 +37,15 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      await cadastrar(formData.email, formData.password, formData.firstName, formData.lastName, formData.imageUrl);
+      await cadastrar(
+        formData.email,
+        formData.password,
+        formData.firstName,
+        formData.lastName,
+        formData.imageUrl
+      );
       setShowNotification(true);
+      router.push("/auth/login");
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
     } finally {
@@ -65,7 +72,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl px-5">
       <form onSubmit={handleSubmit}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
