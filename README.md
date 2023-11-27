@@ -49,7 +49,7 @@ npm install
 5. Inicie a aplicação:
 
 ```bash
-npm start
+npm run dev
 ```
 
 A aplicação será executada no modo de desenvolvimento. Abra seu navegador e acesse [http://localhost:3000](http://localhost:3000) para visualizar a aplicação.
